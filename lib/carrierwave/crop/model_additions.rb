@@ -18,7 +18,7 @@ module CarrierWave
           #    attr_accessor :"#{attachment}_#{a}"
           #  end
           #end
-          after_update :"recreate_#{attachment}_versions"
+          #after_update :"recreate_#{attachment}_versions"
 
         end
 
@@ -38,22 +38,22 @@ module CarrierWave
         end
 
         # method_missing is used to respond to the model callback
-        def method_missing(method, *args)
-          if method.to_s =~ /recreate_(\S{1,})_versions/
-            crop_image(method.to_s.scan(/recreate_(\S{1,})_versions/).flatten.first.to_sym)
-          else
-            super
-          end
-        end
+        #def method_missing(method, *args)
+        #  if method.to_s =~ /recreate_(\S{1,})_versions/
+        #    crop_image(method.to_s.scan(/recreate_(\S{1,})_versions/).flatten.first.to_sym)
+        #  else
+        #    super
+        #  end
+        #end
 
         # Saves the attachment if the crop attributes are present
         # @param  attachment [Symbol] Name of the attribute to be cropped
-        def crop_image(attachment)
-          if cropping?(attachment)
-            attachment_instance = send(attachment)
-            attachment_instance.recreate_versions!
-          end
-        end
+        #def crop_image(attachment)
+        #  if cropping?(attachment)
+        #    attachment_instance = send(attachment)
+        #    attachment_instance.recreate_versions!
+        #  end
+        #end
 
       end  ## End of InstanceMethods
 
