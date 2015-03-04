@@ -13,7 +13,7 @@ module CarrierWave
         def crop_uploaded(attachment)
 
           [:crop_x, :crop_y, :crop_w, :crop_h].each do |a|
-            attr_accessor :"#{attachment}_#{a}"
+            attr_accessor :"#{attachment}_#{a}" unless self.respond_to?(:"#{attachment}_#{a}")
           end
           after_update :"recreate_#{attachment}_versions"
 
